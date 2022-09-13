@@ -124,9 +124,7 @@ class HBNBCommand(cmd.Cmd):
         if className not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        # print(className)
         new_instance = HBNBCommand.classes[className]()
-        # print(new_instance)
         for arg in params[1:]:
             try:
                 key, val = arg.split('=')
@@ -139,7 +137,8 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     new_instance.__dict__[key] = int(val)
             except Exception:
-                pass
+                storage.all().pop(f"{className}.{new_instance.id}")
+                return
         storage.save()
         print(new_instance.id)
         storage.save()
