@@ -128,6 +128,8 @@ class HBNBCommand(cmd.Cmd):
         for arg in params[1:]:
             try:
                 key, val = arg.split('=')
+                if val.startswith("'"):
+                    raise Exception
                 if val.startswith('"') and val.endswith('"'):
                     val.replace('"', '')
                     val.replace('_', ' ')
@@ -137,8 +139,8 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     new_instance.__dict__[key] = int(val)
             except Exception:
-                storage.all().pop(f"{className}.{new_instance.id}")
-                return
+                # storage.all().pop(f"{className}.{new_instance.id}")
+                pass
         storage.save()
         print(new_instance.id)
         storage.save()
