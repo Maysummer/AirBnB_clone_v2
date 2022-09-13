@@ -120,6 +120,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         params = args.split()
+        # print(params)
         className = params[0]
         if className not in HBNBCommand.classes:
             print("** class doesn't exist **")
@@ -131,9 +132,9 @@ class HBNBCommand(cmd.Cmd):
                 if val.startswith("'"):
                     raise Exception
                 if val.startswith('"') and val.endswith('"'):
-                    val.replace('"', '')
-                    val.replace('_', ' ')
-                    new_instance.__dict__[key] = val[1:-1]
+                    val = val.replace('"', '')
+                    val = val.replace('_', ' ')
+                    new_instance.__dict__[key] = val
                 elif '.' in val:
                     new_instance.__dict__[key] = float(val)
                 else:
