@@ -10,9 +10,7 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a list of objects of one type of class"""
-        if cls:
-
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
