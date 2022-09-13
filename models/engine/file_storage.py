@@ -10,6 +10,13 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a list of objects of one type of class"""
+        if cls:
+            className = cls.__name__
+            dct = {}
+            for item in self.__objects:
+                if className in item:
+                    dct[item] = self.__objects[item]
+            return dct
         return self.__objects
 
     def new(self, obj):
@@ -50,8 +57,9 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete obj from __objects if available"""
+        "m""delete obj from __objects if available"""
         if obj:
-            if obj in self.all().values:
-                key = type(obj).__name__ + '.' + obd.id
+            key = type(obj).__name__ + '.' + obj.id
+            if key in self.all():
                 del self.all()[key]
+            self.save()
