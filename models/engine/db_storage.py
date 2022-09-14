@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """data base storage engine"""
 import os
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 
@@ -21,9 +21,12 @@ class DBStorage:
         if mode == "test":
             tables = ["users", "places", "states", "cities",
                       "amenities", "reviews"]
+            pre_drop = "SET FOREIGN_KEY_CHECKS=0;"
+            post_drop = "SET FOREIGN_KEY_CHECKS=1;"
             with self.__engine.connect() as conn:
                 for table in tables:
-                    txt = f"drop table if exists {table};"
+                    txt = f"{pre_drop}drop table if exists {table};\
+                            {post_drop}"
                     conn.execute(text(txt))
 
     def all(self, cls=None):
