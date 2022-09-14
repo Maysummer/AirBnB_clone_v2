@@ -27,3 +27,18 @@ class Place(BaseModel, Base):
     longitude = Column(Float())
     user = relationship("User", back_populates="places")
     cities = relationship("City", back_populates="places")
+    reviews = relationship('Review', back_populates='place',
+                           cascade='all, delete, delete-orphan')
+
+    def get_reviews(self):
+        """returns a list of all reviews with place_id
+        equal to self.id"""
+        from models import storage
+        from models.review import Review
+        lst = []
+
+        for obj in storage.all(Review).values():
+            if obj.place_id == self.id:
+                lst.append(obj)
+
+        return lst
