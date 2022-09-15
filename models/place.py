@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Place Module for HBNB project """
+""" Place Module for HBNB project, new storage engine = SQLAlchemy"""
 from models.base_model import BaseModel, Base
 from sqlalchemy import Integer, Column, String,\
     ForeignKey, Float, Table
