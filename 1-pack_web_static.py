@@ -6,6 +6,7 @@ from datetime import datetime
 
 
 def do_pack():
+    """function to archive"""
     local("mkdir -p versions")
     arcName = "web_static_{}.tgz".format(datetime.strftime(datetime.now(),
                                                            "%Y%m%d%H%M%S"))
