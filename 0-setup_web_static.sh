@@ -19,6 +19,6 @@ chown -R ubuntu:ubuntu /data/
 
 #update config to serve content
 new="\tlocation \/hbnb_static {\n\t\talias \/data\/web_static\/current\/;\n\t}"
-sudo sed -i "s/^\tlocation \/ {/$new\n\n\tlocation \/ {/" /etc/nginx/sites-enabled\/default
+sudo sed -i "s/^\tlocation \/ {/$new\n\n\tlocation \/ {/" /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
