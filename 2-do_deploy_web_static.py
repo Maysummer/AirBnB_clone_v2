@@ -23,7 +23,7 @@ def do_deploy(archive_path):
     # uncompress archive on server
     run("tar -xzf /tmp/{}.tgz -C {}".format(f_name, releases))
     # delete archive on server
-    run("rm /tmp/{}".f_name)
+    run("rm /tmp/{}.tgz".f_name)
     run("mv {}web_static/* {}".format(releases, releases))
     run("rm -rf {}web_static".format(releases))
     # delete symlink
