@@ -10,11 +10,11 @@ env.hosts = ['3.238.171.60', '3.233.224.138']
 
 def do_deploy(archive_path):
     """deploy archive"""
-    if not os.path(archive_path):
+    if not os.path.exists(archive_path):
         return False
 
     # upload archive to web server
-    put("archive_path", "/tmp/")
+    put(archive_path, "/tmp/")
     # verify / create path on server
     f_name = archive_path.split(".")[0].split("/")[1]
     cmd = "mkdir -p /data/web_static/releases/{}/".format(f_name)
